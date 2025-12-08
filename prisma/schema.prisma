@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model inventory {
+  id        Int      @id @default(autoincrement())
+  name      String
+  unit      String
+  price     Float
+  remarks   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  additions    inventory_addition[]
+  subtractions inventory_subtraction[]
+
+  @@map("inventory")
+}
+
+model inventory_addition {
+  id           Int       @id @default(autoincrement())
+  inventory_id Int
+  quantity     Float
+  price        Float
+  vendor       String
+  phone        String
+  date         DateTime  @default(now())
+  remarks      String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  inventory    inventory @relation(fields: [inventory_id], references: [id], onDelete: Cascade)
+
+  @@map("inventory_addition")
+}
+
+model inventory_subtraction {
+  id           Int       @id @default(autoincrement())
+  inventory_id Int
+  quantity     Float
+  price        Float
+  vendor       String
+  phone        String
+  date         DateTime  @default(now())
+  remarks      String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  inventory    inventory @relation(fields: [inventory_id], references: [id], onDelete: Cascade)
+
+  @@map("inventory_subtraction")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}

@@ -1,0 +1,40 @@
+{
+  "name": "venusinventory",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node --files index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
+  },
+  "keywords": [
+    "inventory",
+    "management",
+    "express",
+    "typescript",
+    "prisma"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Inventory Management System with Express, TypeScript, and Prisma",
+  "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.10.2",
+    "nodemon": "^3.1.9",
+    "prisma": "^6.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
