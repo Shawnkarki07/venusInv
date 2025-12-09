@@ -3,11 +3,12 @@ import type { Prisma } from "@prisma/client";
 
 type InventoryItem = Prisma.inventoryGetPayload<object>;
 
-// Create Inventory Item (Only name, unit, price)
+// Create Inventory Item
 export const createInventory = async (data: {
   name: string;
+  fno: string;
+  pack: string;
   unit: string;
-  price: number; // Base/reference price
   remarks?: string;
 }) => {
   return await prisma.inventory.create({
@@ -69,13 +70,14 @@ export const getInventoryById = async (id: number) => {
   };
 };
 
-// Update Inventory Item (Only name, unit, price, remarks)
+// Update Inventory Item
 export const updateInventory = async (
   id: number,
   data: {
     name?: string;
+    fno?: string;
+    pack?: string;
     unit?: string;
-    price?: number; // Base/reference price
     remarks?: string;
   }
 ) => {

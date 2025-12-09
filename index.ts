@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 // CORS configuration
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://venusinventory.vercel.app",
+  "https://venusinventory.vercel.app/",
 ];
 
 const corsOptions = {

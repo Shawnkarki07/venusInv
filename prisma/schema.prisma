@@ -10,8 +10,9 @@ datasource db {
 model inventory {
   id        Int      @id @default(autoincrement())
   name      String
+  fno       String
+  pack      String
   unit      String
-  price     Float
   remarks   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

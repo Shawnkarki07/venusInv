@@ -3,16 +3,16 @@ import * as inventoryService from "../services/inventoryService";
 
 export const createInventory = async (req: Request, res: Response) => {
   try {
-    const { name, unit, price, remarks } = req.body;
+    const { name, fno, pack, unit, remarks } = req.body;
 
     // Validate required fields
-    if (!name || !unit || price === undefined) {
+    if (!name || !fno || !pack || !unit) {
       return res.status(400).json({
-        message: "Missing required fields: name, unit, and price are required",
+        message: "Missing required fields: name, fno, pack, and unit are required",
       });
     }
 
-    const inventoryData = { name, unit, price, remarks };
+    const inventoryData = { name, fno, pack, unit, remarks };
     const inventory = await inventoryService.createInventory(inventoryData);
     return res.status(201).json(inventory);
   } catch (error: any) {
@@ -50,8 +50,8 @@ export const getInventoryById = async (req: Request, res: Response) => {
 
 export const updateInventory = async (req: Request, res: Response) => {
   try {
-    const { name, unit, price, remarks } = req.body;
-    const updateData = { name, unit, price, remarks };
+    const { name, fno, pack, unit, remarks } = req.body;
+    const updateData = { name, fno, pack, unit, remarks };
 
     const inventory = await inventoryService.updateInventory(
       Number(req.params.id),
