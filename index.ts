@@ -10,8 +10,22 @@ const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 // CORS configuration
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://venusinventory.vercel.app",
+];
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200,
 };
